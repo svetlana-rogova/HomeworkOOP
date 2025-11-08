@@ -19,7 +19,7 @@ class Product:
                 product.quantity += dict_product["quantity"]
             if dict_product["price"] > product.price:
                 product.price = dict_product["price"]
-                return product
+            return product
 
         return cls(
             name=dict_product["name"],
@@ -63,11 +63,15 @@ class Category:
 
     @property
     def products(self):
-        product_list = ""
+        product_str = ""
         for el in self.__products:
-            product_list += f"{el.name}, {el.price} руб. Остаток: {el.quantity} шт.\n"
-        return product_list
+            product_str += f"{el.name}, {el.price} руб. Остаток: {el.quantity} шт.\n"
+        return product_str
 
     def add_product(self, products: Product):
         self.__products.append(products)
         Category.product_count += 1
+
+    @property
+    def product_list(self):
+        return self.__products

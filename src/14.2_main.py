@@ -17,13 +17,17 @@ if __name__ == "__main__":
     print(category1.products)
     print(category1.product_count)
 
-    smartphones = Category("Телефоны", "Телефоны и гаджеты", [])
+    smartphones = Category(
+        name="Телефоны",
+        description="Смартфоны большим количеством памяти",
+        products=[Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)],
+    )
 
     new_product = Product.new_product(
         {
             "name": "Samsung Galaxy S23 Ultra",
             "description": "256GB, Серый цвет, 200MP камера",
-            "price": 180000.0,
+            "price": 10000.0,
             "quantity": 5,
         },
         smartphones,
