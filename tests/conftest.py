@@ -50,3 +50,13 @@ def cat_electronic_two():
         description="С большой диагональю",
         products=[Product(name="Xiaomi", description="65 дюймов", price=180000.0, quantity=2)]
     )
+
+
+@pytest.fixture()
+def dict_product():
+    return {
+        "name": "Xiaomi",
+        "description": "65 дюймов",
+        "price": 190000.0,
+        "quantity": 5,
+    }
