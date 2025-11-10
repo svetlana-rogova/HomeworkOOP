@@ -2,9 +2,9 @@ class CategoryIterator:
     """Класс для перебора товаров одной категории"""
     def __init__(self, category_obj):
         self.category = category_obj
-        self.index = 0
 
     def __iter__(self):
+        self.index = 0
         return self
 
     def __next__(self):

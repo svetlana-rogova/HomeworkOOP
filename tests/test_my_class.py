@@ -1,5 +1,8 @@
 from unittest.mock import patch
 
+import pytest
+
+from src.ctegory_iterator import CategoryIterator
 from src.my_class import Category, Product
 
 
@@ -45,4 +48,30 @@ def test_price_(electronic_two):
 
 
 def test_products_property(cat_electronic_one):
-    assert cat_electronic_one.products == 'Hp, 150000.0 руб. Остаток: 7 шт.\nNokia, 50000.0 руб. Остаток: 5 шт.\n'
+    assert cat_electronic_one.products_str() == 'Hp, 150000.0 руб. Остаток: 7 шт.\nNokia, 50000.0 руб. Остаток: 5 шт.\n'
+
+
+def test_CategoryIterator(cat_electronic_one):
+    list_answer = [str(el) for el in CategoryIterator(cat_electronic_one)]
+    assert list_answer == [
+        "Hp, 150000.0 руб. Остаток: 7 шт.",
+        "Nokia, 50000.0 руб. Остаток: 5 шт."
+    ]
+
+
+def test_products_str(electronic_three):
+    assert str(electronic_three) == "Xiaomi, 180000.0 руб. Остаток: 2 шт."
+
+
+def test_category_str(cat_electronic_one):
+    assert str(cat_electronic_one) == "Телефоны, количество продуктов: 12 шт."
+
+
+def test_products_add(electronic_one, electronic_two):
+    assert electronic_one + electronic_two == 1300000.0
+
+
+def test_products_add_two(electronic_one, cat_electronic_one):
+    with pytest.raises(TypeError) as exc_info:
+        electronic_one + cat_electronic_one
+    assert str(exc_info.value) == "Ожидался Product, а получен Category"
