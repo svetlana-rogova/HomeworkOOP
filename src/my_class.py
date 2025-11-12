@@ -16,9 +16,9 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if not isinstance(other, Product):
-            raise TypeError(f"Ожидался Product, а получен {type(other).__name__}")
-        return self.price * self.quantity + other.price * other.quantity
+        if type(other) is Product:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError(f"Ожидался Product, а получен {type(other).__name__}")
 
     @classmethod
     def new_product(cls, dict_product, category):
@@ -85,9 +85,12 @@ class Category:
             product_str += f"{str(el)}\n"
         return product_str
 
-    def add_product(self, products: Product):
-        self.__products.append(products)
-        Category.product_count += 1
+    def add_product(self, product: Product):
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def product_list(self):
