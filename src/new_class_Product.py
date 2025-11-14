@@ -11,11 +11,6 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
-    def __add__(self, other):
-        if type(other) is Smartphone:
-            return self.price * self.quantity + other.price * other.quantity
-        raise TypeError(f"Ожидался Smartphone, а получен {type(other).__name__}")
-
 
 class LawnGrass(Product):
     """Класс для представления травы газонной"""
@@ -25,8 +20,3 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
-
-    def __add__(self, other):
-        if type(other) is LawnGrass:
-            return self.price * self.quantity + other.price * other.quantity
-        raise TypeError(f"Ожидался LawnGrass, а получен {type(other).__name__}")
