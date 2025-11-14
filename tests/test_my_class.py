@@ -75,3 +75,10 @@ def test_products_add_two(electronic_one, cat_electronic_one):
     with pytest.raises(TypeError) as exc_info:
         electronic_one + cat_electronic_one
     assert str(exc_info.value) == "Ожидался Product, а получен Category"
+
+
+def test_add_product(cat_smartphon, product1):
+    cat_smartphon.add_product(product1)
+    assert len(cat_smartphon.products) == 2
+    with pytest.raises(TypeError):
+        cat_smartphon.add_product("Not a product")

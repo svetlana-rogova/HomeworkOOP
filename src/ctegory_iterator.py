@@ -1,5 +1,6 @@
 class CategoryIterator:
     """Класс для перебора товаров одной категории"""
+
     def __init__(self, category_obj):
         self.category = category_obj
 
