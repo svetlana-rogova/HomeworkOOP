@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseProduct(ABC):
+    """Абстрактный класс для выделения общей функциональности, которая должна быть у каждого продукта"""
 
     @classmethod
     @abstractmethod
