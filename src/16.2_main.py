@@ -1,3 +1,4 @@
+from src.class_order import Order
 from src.my_class import Category, Product
 
 if __name__ == '__main__':
@@ -44,3 +45,10 @@ if __name__ == '__main__':
 
     print(Category.category_count)
     print(Category.product_count)
+
+    ord1 = Order(product4)
+    print(ord1)
+    print(Order.order_count)
+    ord2 = Order(product2)
+    print(ord2)
+    print(Order.order_count)

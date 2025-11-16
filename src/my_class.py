@@ -1,4 +1,4 @@
-from src.base_product import BaseProduct
+from src.base_product import BaseProduct, BaseOrderCategory
 from src.print_mixin import Mixin
 
 
@@ -57,7 +57,7 @@ class Product(BaseProduct, Mixin):
         self.__price = new_price
 
 
-class Category:
+class Category(BaseOrderCategory):
     """Класс для представления категорий"""
 
     name: str

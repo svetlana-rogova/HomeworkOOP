@@ -12,3 +12,11 @@ class BaseProduct(ABC):
     @abstractmethod
     def __add__(self, other):
         pass
+
+
+class BaseOrderCategory(ABC):
+    """Абстрактный класс для выделения общей функциональности, которая должна быть у каждого заказа и категории"""
+
+    @abstractmethod
+    def __str__(self):
+        pass
