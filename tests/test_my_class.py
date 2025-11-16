@@ -48,7 +48,8 @@ def test_price_(electronic_two):
 
 
 def test_products_property(cat_electronic_one):
-    assert cat_electronic_one.products_str() == 'Hp, 150000.0 руб. Остаток: 7 шт.\nNokia, 50000.0 руб. Остаток: 5 шт.\n'
+    assert cat_electronic_one.products_str() == ('Hp, 150000.0 руб. Остаток: 7 шт.\nNokia, 50000.0 руб. '
+                                                 'Остаток: 5 шт.\n')
 
 
 def test_CategoryIterator(cat_electronic_one):

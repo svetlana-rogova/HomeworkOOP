@@ -2,6 +2,7 @@ from src.base_product import BaseOrderCategory
 
 
 class Order(BaseOrderCategory):
+    """Класс принимает ссылку на товар и выводит информацию о заказе: товар, количество и итоговую стоимость """
 
     order_count = 0
 
