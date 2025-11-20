@@ -1,4 +1,5 @@
-from src.base_product import BaseProduct, BaseOrderCategory
+from src.base_product import BaseOrderCategory, BaseProduct
+from src.class_except import ZeroQuantityProduct
 from src.print_mixin import Mixin
 
 
@@ -14,6 +15,8 @@ class Product(BaseProduct, Mixin):
         self.name = name
         self.description = description
         self.__price = price
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.quantity = quantity
         super().__init__()
 
@@ -92,11 +95,31 @@ class Category(BaseOrderCategory):
 
     def add_product(self, product: Product):
         if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
+            try:
+                if product.quantity == 0:
+                    raise ZeroQuantityProduct("Нельзя добавлять пробукт с нулевым количеством")
+            except ZeroQuantityProduct as e:
+                print(str(e))
+            else:
+                self.__products.append(product)
+                Category.product_count += 1
+                print("Продукт добавлен")
+            finally:
+                print("Обработка добавления продукта в категорию завершена")
         else:
             raise TypeError
 
     @property
     def product_list(self):
         return self.__products
+
+    def middle_price(self):
+        sum_price_prod = 0
+        for prod in self.__products:
+            sum_price_prod += prod.price
+        try:
+            average_price = sum_price_prod/len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        else:
+            return average_price
