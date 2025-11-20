@@ -123,3 +123,5 @@ class Category(BaseOrderCategory):
             return 0
         else:
             return average_price
+        finally:
+            print("Обработка расчета средней цены завершена")
