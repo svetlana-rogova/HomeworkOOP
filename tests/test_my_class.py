@@ -83,3 +83,22 @@ def test_add_product(cat_smartphon, product1):
     assert len(cat_smartphon.products) == 2
     with pytest.raises(TypeError):
         cat_smartphon.add_product("Not a product")
+
+
+def test_middle_price(cat_electronic_one):
+    assert cat_electronic_one.middle_price() == 100000.0
+
+
+def test_middle_price_two():
+    with pytest.raises(ValueError) as e:
+        Category(
+            name="Телефоны",
+            description="Смартфоны большим количеством памяти",
+            products=[Product(name="Hp", description="1024GB", price=150000.0, quantity=0)]
+        )
+    assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_middle_price_tree():
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    assert category_empty.middle_price() == 0
